@@ -15,24 +15,40 @@ const ToDoList = () => {
     }
   }
 
+  function handleRemove(removeTask) {
+    const deleteTask = tasks.filter((_, index) => {
+      return index !== removeTask;
+    });
+    setTasks(deleteTask);
+  }
+
   return (
-    <div>
-      {/* <form action=""> */}
+    <div className="mt-5 m-5 p-5">
       <input
         type="text"
-        placeholder="whats need to be done"
+        className="todolistInput form-control"
+        placeholder="Whats needs to be done?"
         value={inputValue}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
       <div>
-        <ol>
-          {tasks.map((task, index) => (
-            <li key={index}>{task}</li>
-          ))}
+        <ol className="list-group">
+          {tasks.map((task, index) => {
+            return (
+              <li className="fontList list-group-item" key={index}>
+                {task}
+                <button
+                  onClick={() => handleRemove(index)}
+                  className="d-flex justify-content"
+                >
+                  delete
+                </button>
+              </li>
+            );
+          })}
         </ol>
       </div>
-      {/* </form> */}
     </div>
   );
 };
