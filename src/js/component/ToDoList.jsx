@@ -9,8 +9,8 @@ const ToDoList = () => {
   }
 
   function handleKeyDown(e) {
-    if (e.key === "Enter") {
-      setTasks([...tasks, inputValue]);
+    if (e.key === "Enter" && inputValue.trim()) {
+      setTasks([...tasks, inputValue.trim()]);
       setInputValue("");
     }
   }
@@ -27,26 +27,40 @@ const ToDoList = () => {
       <input
         type="text"
         className="todolistInput form-control"
-        placeholder="Whats needs to be done?"
+        placeholder="¿Whats needs to be done?"
         value={inputValue}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
       <div>
+        {tasks.length === 0 ? (
+          <div className="alert alert-info" role="alert">
+            No hay tareas, añadir tareas
+          </div>
+        ) : null}
         <ol className="list-group">
-          {tasks.map((task, index) => {
-            return (
-              <li className="fontList list-group-item" key={index}>
-                {task}
-                <button
+          {tasks.map((task, index) => (
+            <li className="fontList list-group-item" key={index}>
+              <div className="task-container">
+                <span className="task-text">{task}</span>
+                <span
                   onClick={() => handleRemove(index)}
-                  className="d-flex justify-content"
+                  className="remove-icon"
                 >
-                  delete
-                </button>
-              </li>
-            );
-          })}
+                  X
+                </span>
+              </div>
+            </li>
+          ))}
+          {tasks.length === 0 ? (
+            <div>
+              <span className="numberLeft"></span>
+            </div>
+          ) : (
+            <div>
+              <span className="numberLeft">{tasks.length} Item left</span>
+            </div>
+          )}
         </ol>
       </div>
     </div>

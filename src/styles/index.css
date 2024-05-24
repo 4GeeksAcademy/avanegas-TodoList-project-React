@@ -10,12 +10,19 @@
 
 */
 
+body {
+  background: azure;
+}
+
 .titleProject {
   font-size: 50px;
+  color: lightskyblue;
 }
 
 .fontList {
-  font-size: 20px;
+  font-size: 25px;
+  font-family: monospace;
+  color: grey;
 }
 
 ::placeholder {
@@ -24,5 +31,45 @@
 
 .todolistInput {
   padding: 15px;
-  border: 1px solid black;
+  border: 1px solid blue;
+  font-size: 25;
+}
+
+.list-group-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.task-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.task-text {
+  flex: 1;
+}
+
+.remove-icon {
+  color: lightslategray;
+  cursor: pointer;
+  padding-left: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.list-group-item:hover .remove-icon {
+  opacity: 1;
+}
+
+.fontList {
+  font-size: 16px;
+}
+
+.numberLeft {
+  display: flex;
+  color: grey;
+  font-size: 10px;
 }
